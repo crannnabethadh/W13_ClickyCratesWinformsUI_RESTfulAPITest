@@ -23,8 +23,14 @@ namespace W13_ClickyCratesWinformsUI
                 try
                 {
                     APIHelper apiHelper = new APIHelper();
-                    Player authenticatedPlayer = await apiHelper.Authenticate(UserEmailTextBox.Text, PasswordTextBox.Text);
-                    MessageBox.Show("Player token: " + authenticatedPlayer.Access_Token, "Login correct", MessageBoxButtons.OK);
+                    string playerToken = await apiHelper.Authenticate(UserEmailTextBox.Text, PasswordTextBox.Text);
+                    MessageBox.Show("Player token: " + playerToken, "Login correct", MessageBoxButtons.OK);
+                    // TODO: Call api endpoint to get player data using token
+                    Player loggeidInPlayer = await apiHelper.GetLoggedInPlayerInfo(playerToken);
+                    FirstNameTextBox.Text = loggeidInPlayer.FirstName;
+                    LastNameTextBox.Text = loggeidInPlayer.LastName;
+                    NickNameTextBox.Text = loggeidInPlayer.NickName;
+                    CityComboBox.Text = loggeidInPlayer.City;
                 }
                 catch (Exception ex)
                 {

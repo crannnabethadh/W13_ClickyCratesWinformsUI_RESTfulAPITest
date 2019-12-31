@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace W13_ClickyCratesWinformsUI
 {
@@ -26,7 +27,7 @@ namespace W13_ClickyCratesWinformsUI
             apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<Player> Authenticate(string userEmail, string password)
+        public async Task<string> Authenticate(string userEmail, string password)
         {
             var data = new FormUrlEncodedContent(new[] 
             {
@@ -39,8 +40,30 @@ namespace W13_ClickyCratesWinformsUI
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<Player>();
-                    return result;
+                    var result = await response.Content.ReadAsStringAsync();
+                    string token = JToken.Parse(result).SelectToken("access_token").ToString();
+                    return token;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task<Player> GetLoggedInPlayerInfo(string token)
+        {
+            apiHttpClient.DefaultRequestHeaders.Clear();
+            apiHttpClient.DefaultRequestHeaders.Accept.Clear();
+            apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            apiHttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            using(HttpResponseMessage response = await apiHttpClient.GetAsync("api/Player"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var player = await response.Content.ReadAsAsync<Player>();  // Microsoft.AspNet.WebApi.Client
+                    return player;
                 }
                 else
                 {
