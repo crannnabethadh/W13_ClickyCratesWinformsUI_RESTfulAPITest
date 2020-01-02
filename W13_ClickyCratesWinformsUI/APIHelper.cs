@@ -8,16 +8,11 @@ using Newtonsoft.Json.Linq;
 
 namespace W13_ClickyCratesWinformsUI
 {
-    public class APIHelper
+    public static class APIHelper
     {
-        private HttpClient apiHttpClient;
+        private static HttpClient apiHttpClient;
 
-        public APIHelper()
-        {
-            InitializeClient();
-        }
-
-        private void InitializeClient()
+        public static void InitializeClient()
         {
             string clickycrateswebapi = ConfigurationManager.AppSettings["clickycrateswebapiurl"];
 
@@ -27,7 +22,7 @@ namespace W13_ClickyCratesWinformsUI
             apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<string> Authenticate(string userEmail, string password)
+        public static async Task<string> Authenticate(string userEmail, string password)
         {
             var data = new FormUrlEncodedContent(new[] 
             {
@@ -51,7 +46,7 @@ namespace W13_ClickyCratesWinformsUI
             }
         }
 
-        public async Task<Player> GetLoggedInPlayerInfo(string token)
+        public static async Task<Player> GetLoggedInPlayerInfo(string token)
         {
             apiHttpClient.DefaultRequestHeaders.Clear();
             apiHttpClient.DefaultRequestHeaders.Accept.Clear();
@@ -71,5 +66,70 @@ namespace W13_ClickyCratesWinformsUI
                 }
             }
         }
+
+        public static async Task<string> RegisterNewAspNetUser(AspNetUserModel newUser)
+        {
+            apiHttpClient.DefaultRequestHeaders.Clear();
+            apiHttpClient.DefaultRequestHeaders.Accept.Clear();
+            apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //apiHttpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
+
+            using (HttpResponseMessage response = await apiHttpClient.PostAsJsonAsync<AspNetUserModel>("api/account/register", newUser))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string token = await Authenticate(newUser.Email, newUser.Password);
+                    // get new id for registered user
+                    string newId = await GetAspNetUserId(token);
+                    return newId;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> GetAspNetUserId(string token)
+        {
+            apiHttpClient.DefaultRequestHeaders.Clear();
+            apiHttpClient.DefaultRequestHeaders.Accept.Clear();
+            apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            apiHttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            using (HttpResponseMessage response = await apiHttpClient.GetAsync("api/Account/UserId"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var aspNetUserId = await response.Content.ReadAsAsync<string>();  // Microsoft.AspNet.WebApi.Client
+                    return aspNetUserId;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<bool> InsertNewPlayer(Player newPlayer, string token)
+        {
+            apiHttpClient.DefaultRequestHeaders.Clear();
+            apiHttpClient.DefaultRequestHeaders.Accept.Clear();
+            apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            apiHttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            using (HttpResponseMessage response = await apiHttpClient.PostAsJsonAsync<Player>("api/Player/InsertNewPlayer", newPlayer))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsAsync<bool>();
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
     }
 }
