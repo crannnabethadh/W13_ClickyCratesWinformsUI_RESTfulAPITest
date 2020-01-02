@@ -11,19 +11,22 @@ namespace W13_ClickyCratesWinformsUI
     public static class APIHelper
     {
         private static HttpClient apiHttpClient;
+        private static string clickycrateswebapi = ConfigurationManager.AppSettings["clickycrateswebapiurl"];
 
-        public static void InitializeClient()
+        private static void InitializeClient()
         {
-            string clickycrateswebapi = ConfigurationManager.AppSettings["clickycrateswebapiurl"];
-
-            apiHttpClient = new HttpClient();
-            apiHttpClient.BaseAddress = new Uri(clickycrateswebapi); // Defined in App.config
+            if (apiHttpClient == null)   // Singleton. Only 1 instance per application
+            {
+                apiHttpClient = new HttpClient();
+                apiHttpClient.BaseAddress = new Uri(clickycrateswebapi); // Defined in App.config
+            }
+            apiHttpClient.DefaultRequestHeaders.Clear();
             apiHttpClient.DefaultRequestHeaders.Accept.Clear();
-            apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public static async Task<string> Authenticate(string userEmail, string password)
         {
+            InitializeClient();
             var data = new FormUrlEncodedContent(new[] 
             {
                 new KeyValuePair<string,string>("grant_type", "password"),
@@ -48,8 +51,7 @@ namespace W13_ClickyCratesWinformsUI
 
         public static async Task<Player> GetLoggedInPlayerInfo(string token)
         {
-            apiHttpClient.DefaultRequestHeaders.Clear();
-            apiHttpClient.DefaultRequestHeaders.Accept.Clear();
+            InitializeClient();
             apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             apiHttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
@@ -69,10 +71,8 @@ namespace W13_ClickyCratesWinformsUI
 
         public static async Task<string> RegisterNewAspNetUser(AspNetUserModel newUser)
         {
-            apiHttpClient.DefaultRequestHeaders.Clear();
-            apiHttpClient.DefaultRequestHeaders.Accept.Clear();
+            InitializeClient();
             apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //apiHttpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
 
             using (HttpResponseMessage response = await apiHttpClient.PostAsJsonAsync<AspNetUserModel>("api/account/register", newUser))
             {
@@ -92,8 +92,7 @@ namespace W13_ClickyCratesWinformsUI
 
         public static async Task<string> GetAspNetUserId(string token)
         {
-            apiHttpClient.DefaultRequestHeaders.Clear();
-            apiHttpClient.DefaultRequestHeaders.Accept.Clear();
+            InitializeClient();
             apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             apiHttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
@@ -101,7 +100,7 @@ namespace W13_ClickyCratesWinformsUI
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var aspNetUserId = await response.Content.ReadAsAsync<string>();  // Microsoft.AspNet.WebApi.Client
+                    string aspNetUserId = await response.Content.ReadAsAsync<string>();  // ReadAsAsync in Microsoft.AspNet.WebApi.Client package
                     return aspNetUserId;
                 }
                 else
@@ -113,8 +112,7 @@ namespace W13_ClickyCratesWinformsUI
 
         public static async Task<bool> InsertNewPlayer(Player newPlayer, string token)
         {
-            apiHttpClient.DefaultRequestHeaders.Clear();
-            apiHttpClient.DefaultRequestHeaders.Accept.Clear();
+            InitializeClient();
             apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             apiHttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
@@ -122,7 +120,8 @@ namespace W13_ClickyCratesWinformsUI
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadAsAsync<bool>();
+                    var result = await response.Content.ReadAsAsync<bool>();
+                    return result;
                 }
                 else
                 {

@@ -40,11 +40,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.RegisterNewUserButton = new System.Windows.Forms.Button();
+            this.RegisterGroupBox = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.RegisterPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
+            this.RegisterNewUserButton = new System.Windows.Forms.Button();
+            this.RegisterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // RegisterUserEmailTextBox
@@ -102,6 +102,7 @@
             this.RegisterCityComboBox.Name = "RegisterCityComboBox";
             this.RegisterCityComboBox.Size = new System.Drawing.Size(250, 28);
             this.RegisterCityComboBox.TabIndex = 19;
+            this.RegisterCityComboBox.Text = "Inca";
             // 
             // ConfirmRegiterPasswordTextBox
             // 
@@ -171,39 +172,29 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "First Name:";
             // 
-            // groupBox1
+            // RegisterGroupBox
             // 
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.RegisterPasswordTextBox);
-            this.groupBox1.Controls.Add(this.RegisterNewUserButton);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.RegisterNickNameTextBox);
-            this.groupBox1.Controls.Add(this.RegisterUserEmailTextBox);
-            this.groupBox1.Controls.Add(this.RegisterCityComboBox);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.RegisterLastNameTextBox);
-            this.groupBox1.Controls.Add(this.RegisterFirstNameTextBox);
-            this.groupBox1.Controls.Add(this.ConfirmRegiterPasswordTextBox);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(22, 28);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(479, 434);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Register New Player";
-            // 
-            // RegisterNewUserButton
-            // 
-            this.RegisterNewUserButton.Location = new System.Drawing.Point(199, 373);
-            this.RegisterNewUserButton.Name = "RegisterNewUserButton";
-            this.RegisterNewUserButton.Size = new System.Drawing.Size(250, 44);
-            this.RegisterNewUserButton.TabIndex = 20;
-            this.RegisterNewUserButton.Text = "Register";
-            this.RegisterNewUserButton.UseVisualStyleBackColor = true;
-            this.RegisterNewUserButton.Click += new System.EventHandler(this.RegisterNewUserButton_Click);
+            this.RegisterGroupBox.Controls.Add(this.label7);
+            this.RegisterGroupBox.Controls.Add(this.RegisterPasswordTextBox);
+            this.RegisterGroupBox.Controls.Add(this.RegisterNewUserButton);
+            this.RegisterGroupBox.Controls.Add(this.label1);
+            this.RegisterGroupBox.Controls.Add(this.RegisterNickNameTextBox);
+            this.RegisterGroupBox.Controls.Add(this.RegisterUserEmailTextBox);
+            this.RegisterGroupBox.Controls.Add(this.RegisterCityComboBox);
+            this.RegisterGroupBox.Controls.Add(this.label2);
+            this.RegisterGroupBox.Controls.Add(this.RegisterLastNameTextBox);
+            this.RegisterGroupBox.Controls.Add(this.RegisterFirstNameTextBox);
+            this.RegisterGroupBox.Controls.Add(this.ConfirmRegiterPasswordTextBox);
+            this.RegisterGroupBox.Controls.Add(this.label6);
+            this.RegisterGroupBox.Controls.Add(this.label3);
+            this.RegisterGroupBox.Controls.Add(this.label5);
+            this.RegisterGroupBox.Controls.Add(this.label4);
+            this.RegisterGroupBox.Location = new System.Drawing.Point(22, 28);
+            this.RegisterGroupBox.Name = "RegisterGroupBox";
+            this.RegisterGroupBox.Size = new System.Drawing.Size(479, 434);
+            this.RegisterGroupBox.TabIndex = 20;
+            this.RegisterGroupBox.TabStop = false;
+            this.RegisterGroupBox.Text = "New Player Data";
             // 
             // label7
             // 
@@ -225,18 +216,29 @@
             this.RegisterPasswordTextBox.Text = "Secret_20";
             this.RegisterPasswordTextBox.UseSystemPasswordChar = true;
             // 
+            // RegisterNewUserButton
+            // 
+            this.RegisterNewUserButton.Location = new System.Drawing.Point(199, 373);
+            this.RegisterNewUserButton.Name = "RegisterNewUserButton";
+            this.RegisterNewUserButton.Size = new System.Drawing.Size(250, 44);
+            this.RegisterNewUserButton.TabIndex = 20;
+            this.RegisterNewUserButton.Text = "Register";
+            this.RegisterNewUserButton.UseVisualStyleBackColor = true;
+            this.RegisterNewUserButton.Click += new System.EventHandler(this.RegisterNewUserButton_Click);
+            // 
             // RegisterDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 488);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.RegisterGroupBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "RegisterDialog";
-            this.Text = "RegisterDialog";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Text = "Register";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegisterDialog_FormClosing);
+            this.RegisterGroupBox.ResumeLayout(false);
+            this.RegisterGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -255,7 +257,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox RegisterGroupBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox RegisterPasswordTextBox;
         private System.Windows.Forms.Button RegisterNewUserButton;

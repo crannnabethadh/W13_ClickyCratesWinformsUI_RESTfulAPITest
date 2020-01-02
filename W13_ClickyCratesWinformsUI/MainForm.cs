@@ -22,7 +22,6 @@ namespace W13_ClickyCratesWinformsUI
             {
                 try
                 {
-                    APIHelper.InitializeClient();
                     string playerToken = await APIHelper.Authenticate(UserEmailTextBox.Text, PasswordTextBox.Text);
                     MessageBox.Show("Player token: " + playerToken, "Login correct", MessageBoxButtons.OK);
                     // TODO: Call api endpoint to get player data using token
@@ -42,16 +41,18 @@ namespace W13_ClickyCratesWinformsUI
         private void RegisterLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             RegisterDialog registerDialog = new RegisterDialog();
+            registerDialog.PlayerRegisteredEvent += RegisterDialog_PlayerRegisteredEvent;
             DialogResult result = registerDialog.ShowDialog(this);
+            registerDialog.PlayerRegisteredEvent -= RegisterDialog_PlayerRegisteredEvent;
+        }
 
-            // TODO: Implement event system that communicates successful player registration
-
-            if (result == DialogResult.OK)
-            {
-                // user inserted correctly
-                // Populate login and player data
-                
-            }
+        private void RegisterDialog_PlayerRegisteredEvent(object sender, Player e)
+        {
+            UserEmailTextBox.Text = e.Email;
+            FirstNameTextBox.Text = e.FirstName;
+            LastNameTextBox.Text = e.LastName;
+            NickNameTextBox.Text = e.NickName;
+            CityComboBox.Text = e.City;
         }
     }
 }

@@ -53,7 +53,6 @@
             // 
             // UserEmailTextBox
             // 
-            this.UserEmailTextBox.Enabled = false;
             this.UserEmailTextBox.Location = new System.Drawing.Point(56, 70);
             this.UserEmailTextBox.Name = "UserEmailTextBox";
             this.UserEmailTextBox.Size = new System.Drawing.Size(168, 26);
