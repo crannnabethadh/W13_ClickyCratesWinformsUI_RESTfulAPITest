@@ -55,7 +55,7 @@ namespace W13_ClickyCratesWinformsUI
             apiHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             apiHttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-            using(HttpResponseMessage response = await apiHttpClient.GetAsync("api/Player"))
+            using(HttpResponseMessage response = await apiHttpClient.GetAsync("api/Player/GetPlayerInfo"))
             {
                 if (response.IsSuccessStatusCode)
                 {

@@ -14,5 +14,6 @@ namespace W13_ClickyCratesWinformsUI
         public string LastName { get; set; }
         public string NickName { get; set; }
         public string City { get; set; }
+        public string BlobUri { get; set; }
     }
 }

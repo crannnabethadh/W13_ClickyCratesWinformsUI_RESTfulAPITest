@@ -47,8 +47,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.RegisterLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.PlayerAvatarPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerAvatarPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // UserEmailTextBox
@@ -111,6 +113,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.PlayerAvatarPictureBox);
             this.groupBox2.Controls.Add(this.SavePlayerDataButton);
             this.groupBox2.Controls.Add(this.EditPlayerDataButton);
             this.groupBox2.Controls.Add(this.CityComboBox);
@@ -121,27 +124,27 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(309, 27);
+            this.groupBox2.Location = new System.Drawing.Point(279, 27);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(405, 289);
+            this.groupBox2.Size = new System.Drawing.Size(480, 289);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Player Data";
             // 
             // SavePlayerDataButton
             // 
-            this.SavePlayerDataButton.Location = new System.Drawing.Point(222, 231);
+            this.SavePlayerDataButton.Location = new System.Drawing.Point(247, 231);
             this.SavePlayerDataButton.Name = "SavePlayerDataButton";
-            this.SavePlayerDataButton.Size = new System.Drawing.Size(154, 41);
+            this.SavePlayerDataButton.Size = new System.Drawing.Size(206, 41);
             this.SavePlayerDataButton.TabIndex = 9;
             this.SavePlayerDataButton.Text = "Save";
             this.SavePlayerDataButton.UseVisualStyleBackColor = true;
             // 
             // EditPlayerDataButton
             // 
-            this.EditPlayerDataButton.Location = new System.Drawing.Point(30, 231);
+            this.EditPlayerDataButton.Location = new System.Drawing.Point(24, 231);
             this.EditPlayerDataButton.Name = "EditPlayerDataButton";
-            this.EditPlayerDataButton.Size = new System.Drawing.Size(155, 41);
+            this.EditPlayerDataButton.Size = new System.Drawing.Size(200, 41);
             this.EditPlayerDataButton.TabIndex = 8;
             this.EditPlayerDataButton.Text = "Edit";
             this.EditPlayerDataButton.UseVisualStyleBackColor = true;
@@ -161,7 +164,7 @@
             "Sineu"});
             this.CityComboBox.Location = new System.Drawing.Point(125, 171);
             this.CityComboBox.Name = "CityComboBox";
-            this.CityComboBox.Size = new System.Drawing.Size(251, 28);
+            this.CityComboBox.Size = new System.Drawing.Size(172, 28);
             this.CityComboBox.TabIndex = 7;
             // 
             // NickNameTextBox
@@ -169,7 +172,7 @@
             this.NickNameTextBox.Enabled = false;
             this.NickNameTextBox.Location = new System.Drawing.Point(125, 126);
             this.NickNameTextBox.Name = "NickNameTextBox";
-            this.NickNameTextBox.Size = new System.Drawing.Size(251, 26);
+            this.NickNameTextBox.Size = new System.Drawing.Size(172, 26);
             this.NickNameTextBox.TabIndex = 6;
             // 
             // LastNameTextBox
@@ -177,7 +180,7 @@
             this.LastNameTextBox.Enabled = false;
             this.LastNameTextBox.Location = new System.Drawing.Point(125, 82);
             this.LastNameTextBox.Name = "LastNameTextBox";
-            this.LastNameTextBox.Size = new System.Drawing.Size(251, 26);
+            this.LastNameTextBox.Size = new System.Drawing.Size(172, 26);
             this.LastNameTextBox.TabIndex = 5;
             // 
             // FirstNameTextBox
@@ -185,7 +188,7 @@
             this.FirstNameTextBox.Enabled = false;
             this.FirstNameTextBox.Location = new System.Drawing.Point(125, 39);
             this.FirstNameTextBox.Name = "FirstNameTextBox";
-            this.FirstNameTextBox.Size = new System.Drawing.Size(251, 26);
+            this.FirstNameTextBox.Size = new System.Drawing.Size(172, 26);
             this.FirstNameTextBox.TabIndex = 4;
             // 
             // label6
@@ -244,11 +247,20 @@
             this.RegisterLinkLabel.Text = "Register";
             this.RegisterLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RegisterLinkLabel_LinkClicked);
             // 
+            // PlayerAvatarPictureBox
+            // 
+            this.PlayerAvatarPictureBox.Location = new System.Drawing.Point(322, 39);
+            this.PlayerAvatarPictureBox.Name = "PlayerAvatarPictureBox";
+            this.PlayerAvatarPictureBox.Size = new System.Drawing.Size(131, 160);
+            this.PlayerAvatarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PlayerAvatarPictureBox.TabIndex = 10;
+            this.PlayerAvatarPictureBox.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 338);
+            this.ClientSize = new System.Drawing.Size(782, 334);
             this.Controls.Add(this.RegisterLinkLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox2);
@@ -261,6 +273,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerAvatarPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,6 +300,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.LinkLabel RegisterLinkLabel;
+        private System.Windows.Forms.PictureBox PlayerAvatarPictureBox;
     }
 }
 

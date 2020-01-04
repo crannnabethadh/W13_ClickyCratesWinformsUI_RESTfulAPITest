@@ -44,7 +44,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.RegisterPasswordTextBox = new System.Windows.Forms.TextBox();
             this.RegisterNewUserButton = new System.Windows.Forms.Button();
+            this.AvatarImageGroupBox = new System.Windows.Forms.GroupBox();
+            this.LoadNewAvatarImageButton = new System.Windows.Forms.Button();
+            this.AvatarImagePictureBox = new System.Windows.Forms.PictureBox();
+            this.AvatarImageOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.RegisterGroupBox.SuspendLayout();
+            this.AvatarImageGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AvatarImagePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // RegisterUserEmailTextBox
@@ -176,7 +182,6 @@
             // 
             this.RegisterGroupBox.Controls.Add(this.label7);
             this.RegisterGroupBox.Controls.Add(this.RegisterPasswordTextBox);
-            this.RegisterGroupBox.Controls.Add(this.RegisterNewUserButton);
             this.RegisterGroupBox.Controls.Add(this.label1);
             this.RegisterGroupBox.Controls.Add(this.RegisterNickNameTextBox);
             this.RegisterGroupBox.Controls.Add(this.RegisterUserEmailTextBox);
@@ -191,7 +196,7 @@
             this.RegisterGroupBox.Controls.Add(this.label4);
             this.RegisterGroupBox.Location = new System.Drawing.Point(22, 28);
             this.RegisterGroupBox.Name = "RegisterGroupBox";
-            this.RegisterGroupBox.Size = new System.Drawing.Size(479, 434);
+            this.RegisterGroupBox.Size = new System.Drawing.Size(479, 366);
             this.RegisterGroupBox.TabIndex = 20;
             this.RegisterGroupBox.TabStop = false;
             this.RegisterGroupBox.Text = "New Player Data";
@@ -218,27 +223,66 @@
             // 
             // RegisterNewUserButton
             // 
-            this.RegisterNewUserButton.Location = new System.Drawing.Point(199, 373);
+            this.RegisterNewUserButton.Location = new System.Drawing.Point(22, 423);
             this.RegisterNewUserButton.Name = "RegisterNewUserButton";
-            this.RegisterNewUserButton.Size = new System.Drawing.Size(250, 44);
+            this.RegisterNewUserButton.Size = new System.Drawing.Size(826, 44);
             this.RegisterNewUserButton.TabIndex = 20;
             this.RegisterNewUserButton.Text = "Register";
             this.RegisterNewUserButton.UseVisualStyleBackColor = true;
             this.RegisterNewUserButton.Click += new System.EventHandler(this.RegisterNewUserButton_Click);
             // 
+            // AvatarImageGroupBox
+            // 
+            this.AvatarImageGroupBox.Controls.Add(this.LoadNewAvatarImageButton);
+            this.AvatarImageGroupBox.Controls.Add(this.AvatarImagePictureBox);
+            this.AvatarImageGroupBox.Location = new System.Drawing.Point(544, 28);
+            this.AvatarImageGroupBox.Name = "AvatarImageGroupBox";
+            this.AvatarImageGroupBox.Size = new System.Drawing.Size(304, 366);
+            this.AvatarImageGroupBox.TabIndex = 21;
+            this.AvatarImageGroupBox.TabStop = false;
+            this.AvatarImageGroupBox.Text = "Avatar";
+            // 
+            // LoadNewAvatarImageButton
+            // 
+            this.LoadNewAvatarImageButton.Location = new System.Drawing.Point(72, 311);
+            this.LoadNewAvatarImageButton.Name = "LoadNewAvatarImageButton";
+            this.LoadNewAvatarImageButton.Size = new System.Drawing.Size(167, 39);
+            this.LoadNewAvatarImageButton.TabIndex = 1;
+            this.LoadNewAvatarImageButton.Text = "Select New";
+            this.LoadNewAvatarImageButton.UseVisualStyleBackColor = true;
+            this.LoadNewAvatarImageButton.Click += new System.EventHandler(this.LoadNewAvatarImageButton_Click);
+            // 
+            // AvatarImagePictureBox
+            // 
+            this.AvatarImagePictureBox.Location = new System.Drawing.Point(28, 47);
+            this.AvatarImagePictureBox.Name = "AvatarImagePictureBox";
+            this.AvatarImagePictureBox.Size = new System.Drawing.Size(254, 252);
+            this.AvatarImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.AvatarImagePictureBox.TabIndex = 0;
+            this.AvatarImagePictureBox.TabStop = false;
+            // 
+            // AvatarImageOpenFileDialog
+            // 
+            this.AvatarImageOpenFileDialog.InitialDirectory = "%USERNAME%";
+            // 
             // RegisterDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 488);
+            this.ClientSize = new System.Drawing.Size(860, 488);
+            this.Controls.Add(this.AvatarImageGroupBox);
             this.Controls.Add(this.RegisterGroupBox);
+            this.Controls.Add(this.RegisterNewUserButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "RegisterDialog";
             this.Text = "Register";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegisterDialog_FormClosing);
+            this.Load += new System.EventHandler(this.RegisterDialog_Load);
             this.RegisterGroupBox.ResumeLayout(false);
             this.RegisterGroupBox.PerformLayout();
+            this.AvatarImageGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AvatarImagePictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,5 +305,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox RegisterPasswordTextBox;
         private System.Windows.Forms.Button RegisterNewUserButton;
+        private System.Windows.Forms.GroupBox AvatarImageGroupBox;
+        private System.Windows.Forms.PictureBox AvatarImagePictureBox;
+        private System.Windows.Forms.Button LoadNewAvatarImageButton;
+        private System.Windows.Forms.OpenFileDialog AvatarImageOpenFileDialog;
     }
 }

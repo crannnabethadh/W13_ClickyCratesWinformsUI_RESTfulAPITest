@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Azure.Storage;
+using Microsoft.Azure.Storage.Blob;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,13 +26,14 @@ namespace W13_ClickyCratesWinformsUI
                 try
                 {
                     string playerToken = await APIHelper.Authenticate(UserEmailTextBox.Text, PasswordTextBox.Text);
-                    MessageBox.Show("Player token: " + playerToken, "Login correct", MessageBoxButtons.OK);
+                    // MessageBox.Show("Player token: " + playerToken, "Login correct", MessageBoxButtons.OK);
                     // TODO: Call api endpoint to get player data using token
                     Player loggeidInPlayer = await APIHelper.GetLoggedInPlayerInfo(playerToken);
                     FirstNameTextBox.Text = loggeidInPlayer.FirstName;
                     LastNameTextBox.Text = loggeidInPlayer.LastName;
                     NickNameTextBox.Text = loggeidInPlayer.NickName;
                     CityComboBox.Text = loggeidInPlayer.City;
+                    PlayerAvatarPictureBox.ImageLocation = loggeidInPlayer.BlobUri;
                 }
                 catch (Exception ex)
                 {
@@ -53,6 +57,7 @@ namespace W13_ClickyCratesWinformsUI
             LastNameTextBox.Text = e.LastName;
             NickNameTextBox.Text = e.NickName;
             CityComboBox.Text = e.City;
+            PlayerAvatarPictureBox.ImageLocation = e.BlobUri;
         }
     }
 }
