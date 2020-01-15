@@ -2,12 +2,8 @@
 using Microsoft.Azure.Storage.Blob;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,7 +34,6 @@ namespace W13_ClickyCratesWinformsUI
         {
             InitializeBlobStorage();
             GetRandomBlobFromAzureStorage();
-
         }
 
         private void InitializeBlobStorage()

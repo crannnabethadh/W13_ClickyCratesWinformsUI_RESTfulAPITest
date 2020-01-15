@@ -35,6 +35,7 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PlayerAvatarPictureBox = new System.Windows.Forms.PictureBox();
             this.SavePlayerDataButton = new System.Windows.Forms.Button();
             this.EditPlayerDataButton = new System.Windows.Forms.Button();
             this.CityComboBox = new System.Windows.Forms.ComboBox();
@@ -47,7 +48,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.RegisterLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.PlayerAvatarPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerAvatarPictureBox)).BeginInit();
@@ -130,6 +130,15 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Player Data";
+            // 
+            // PlayerAvatarPictureBox
+            // 
+            this.PlayerAvatarPictureBox.Location = new System.Drawing.Point(322, 39);
+            this.PlayerAvatarPictureBox.Name = "PlayerAvatarPictureBox";
+            this.PlayerAvatarPictureBox.Size = new System.Drawing.Size(131, 160);
+            this.PlayerAvatarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PlayerAvatarPictureBox.TabIndex = 10;
+            this.PlayerAvatarPictureBox.TabStop = false;
             // 
             // SavePlayerDataButton
             // 
@@ -246,15 +255,6 @@
             this.RegisterLinkLabel.TabStop = true;
             this.RegisterLinkLabel.Text = "Register";
             this.RegisterLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RegisterLinkLabel_LinkClicked);
-            // 
-            // PlayerAvatarPictureBox
-            // 
-            this.PlayerAvatarPictureBox.Location = new System.Drawing.Point(322, 39);
-            this.PlayerAvatarPictureBox.Name = "PlayerAvatarPictureBox";
-            this.PlayerAvatarPictureBox.Size = new System.Drawing.Size(131, 160);
-            this.PlayerAvatarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PlayerAvatarPictureBox.TabIndex = 10;
-            this.PlayerAvatarPictureBox.TabStop = false;
             // 
             // MainForm
             // 

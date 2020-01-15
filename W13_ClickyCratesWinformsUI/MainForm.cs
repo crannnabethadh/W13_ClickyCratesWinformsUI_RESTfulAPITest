@@ -26,8 +26,6 @@ namespace W13_ClickyCratesWinformsUI
                 try
                 {
                     string playerToken = await APIHelper.Authenticate(UserEmailTextBox.Text, PasswordTextBox.Text);
-                    // MessageBox.Show("Player token: " + playerToken, "Login correct", MessageBoxButtons.OK);
-                    // TODO: Call api endpoint to get player data using token
                     Player loggeidInPlayer = await APIHelper.GetLoggedInPlayerInfo(playerToken);
                     FirstNameTextBox.Text = loggeidInPlayer.FirstName;
                     LastNameTextBox.Text = loggeidInPlayer.LastName;
